@@ -1,0 +1,141 @@
+body {
+    background-color: #efefef;
+}
+.header {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    color: #454545;
+    background: #d3d3d3;
+    line-height: 32px;
+}
+
+.header > * {
+    border-right: 1px solid #ddd;
+}
+
+.header > .name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.ast {
+    background: #EDEDED;
+}
+
+li {
+    list-style-type: none;
+    position: relative;
+}
+
+li .detail {
+    display: none;
+}
+
+
+.toggleable.open > .preview, .toggleable.open > .dict-value > .preview {
+    display: none;
+}
+
+.open > .detail, .open > .dict-value > .detail {
+    display: inline;
+}
+
+.toggleable::before {
+    content: '+';
+    color: green;
+    position: absolute;
+    left: -15px;
+}
+
+.open::before {
+    content: '-';
+    color: red;
+}
+
+.toggleable .entryType:hover, .toggleable > .dict-key:hover {
+    text-decoration: underline;
+}
+
+.entryType, .toggleable > .dict-key {
+    cursor: pointer;
+}
+
+.entryType {
+    color: #268BD2;
+}
+
+.preview {
+    color: #93A1A1;
+}
+
+.tree {
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.preview > .content {
+    font-style: italic;
+}
+
+.p {
+    color: #93A1A1;
+}
+
+.dict-key::after {
+    content: ':';
+    color: #93A1A1;
+}
+
+.string {
+    color: #2AA198;
+}
+
+.number {
+    color: #2AA198;
+}
+
+.dict-key {
+    color: #B58900;
+}
+
+/*布局*/
+.container {
+    display: flex;
+}
+.splitLine {
+    width: 5px;
+    background: #ddd;
+}
+
+.splitLine:hover {
+    background-color: #999;
+    cursor: col-resize;
+}
+
+.left-editor, .ast {
+    flex: 1;
+    width: 100%;
+}
+.ast {
+    min-width: 0;
+    min-height: 0;
+}
+.left {
+    width:48%;
+    margin-right: 32px;
+}
+.right {
+    margin-top: 52px;
+    width: 48%;
+}
+.function-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 14px;
+    margin: 16px 0;
+}
+.CodeMirror {
+    min-height: 600px;
+    border-radius: 3px;
+}

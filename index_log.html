@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>log</title>
+    <style>
+        #log {
+            font-family: monospace;
+            font-style: italic;
+        }
+        .log-container {
+            flex-wrap: wrap;
+            margin: 3px 0;
+        }
+        .number {
+            color: blue;
+        }
+        .string {
+            color: #000;
+        }
+        .index {
+            color: darkmagenta;
+        }
+        .hide {
+            display: none;
+        }
+        .padding-border {
+            padding-left: 30px;
+        }
+        .divider {
+            width: unset;
+            height: 1px;
+            background-color: #f2f2f2;
+        }
+        .tail {
+            color: plum;
+        }
+        .arrow {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-left: 5px solid #333;
+            border-bottom: 5px solid transparent;
+            margin: 0 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="log"></div>
+    <script src="../tokenizer.js"></script>
+    <script src="log.js"></script>
+</body>
+</html>
