@@ -1020,7 +1020,7 @@ class Parser {
 module.exports = {
     Parser,
 }
-},{"../config":3,"../util":53,"./methods/program":6,"./methods/statement/blockStatement":7,"./methods/statement/commentStatement":8,"./methods/statement/control_flow/breakStatement":9,"./methods/statement/control_flow/continueStatement":10,"./methods/statement/control_flow/ifStatement":11,"./methods/statement/control_flow/returnStatement":12,"./methods/statement/declaration/classDeclaration":13,"./methods/statement/declaration/functionDeclaration":14,"./methods/statement/declaration/importDeclaration":15,"./methods/statement/declaration/importSpecifier":16,"./methods/statement/declaration/variableDeclaration":17,"./methods/statement/declaration/variableStatement":18,"./methods/statement/expression/arrayExpression":19,"./methods/statement/expression/assignmentExpression":20,"./methods/statement/expression/binaryExpression":21,"./methods/statement/expression/callExpression":22,"./methods/statement/expression/class/classExpression":23,"./methods/statement/expression/class/classMethod":24,"./methods/statement/expression/class/classProperty":25,"./methods/statement/expression/class/classbody":26,"./methods/statement/expression/class/newExpression":27,"./methods/statement/expression/class/thisExpression":28,"./methods/statement/expression/dict/objectExpression":29,"./methods/statement/expression/dict/propertyAssignment":30,"./methods/statement/expression/dict/propertyNameAndValueList":31,"./methods/statement/expression/elementList":32,"./methods/statement/expression/expressionSequence":33,"./methods/statement/expression/function/_arguments":34,"./methods/statement/expression/function/argumentList":35,"./methods/statement/expression/function/assignmentPattern":36,"./methods/statement/expression/function/formalParameterList":37,"./methods/statement/expression/function/functionExpression":38,"./methods/statement/expression/identifier":39,"./methods/statement/expression/literal":40,"./methods/statement/expression/memberExpression":41,"./methods/statement/expression/singleExpression":42,"./methods/statement/expression/unaryExpression":43,"./methods/statement/expression/updateExpression":44,"./methods/statement/expressionStatement":45,"./methods/statement/loops/forStatement":46,"./methods/statement/loops/whileStatement":47,"./methods/statement/statement":48,"./methods/statement/statementList":49,"./methods/type/generics":50,"./methods/type/typeModification":51}],6:[function(require,module,exports){
+},{"../config":3,"../util":53,"./methods/program":6,"./methods/statement/blockStatement":7,"./methods/statement/commentStatement":8,"./methods/statement/control_flow/breakStatement":9,"./methods/statement/control_flow/continueStatement":10,"./methods/statement/control_flow/ifStatement":11,"./methods/statement/control_flow/returnStatement":12,"./methods/statement/declaration/classDeclaration":13,"./methods/statement/declaration/functionDeclaration":14,"./methods/statement/declaration/importDeclaration":15,"./methods/statement/declaration/importSpecifier":16,"./methods/statement/declaration/variableDeclaration":17,"./methods/statement/declaration/variableStatement":18,"./methods/statement/expression/arrayExpression":20,"./methods/statement/expression/assignmentExpression":21,"./methods/statement/expression/binaryExpression":22,"./methods/statement/expression/callExpression":23,"./methods/statement/expression/class/classExpression":24,"./methods/statement/expression/class/classMethod":25,"./methods/statement/expression/class/classProperty":26,"./methods/statement/expression/class/classbody":27,"./methods/statement/expression/class/newExpression":28,"./methods/statement/expression/class/thisExpression":29,"./methods/statement/expression/dict/objectExpression":30,"./methods/statement/expression/dict/propertyAssignment":31,"./methods/statement/expression/dict/propertyNameAndValueList":32,"./methods/statement/expression/elementList":33,"./methods/statement/expression/expressionSequence":34,"./methods/statement/expression/function/_arguments":35,"./methods/statement/expression/function/argumentList":36,"./methods/statement/expression/function/assignmentPattern":37,"./methods/statement/expression/function/formalParameterList":38,"./methods/statement/expression/function/functionExpression":39,"./methods/statement/expression/identifier":40,"./methods/statement/expression/literal":41,"./methods/statement/expression/memberExpression":42,"./methods/statement/expression/singleExpression":43,"./methods/statement/expression/unaryExpression":44,"./methods/statement/expression/updateExpression":45,"./methods/statement/expressionStatement":19,"./methods/statement/loops/forStatement":46,"./methods/statement/loops/whileStatement":47,"./methods/statement/statement":48,"./methods/statement/statementList":49,"./methods/type/generics":50,"./methods/type/typeModification":51}],6:[function(require,module,exports){
 const {ProgramNode} = require("../../type");
 const program = function () {
     // Program: Statement*
@@ -1364,6 +1364,19 @@ module.exports = {
     variableStatement,
 }
 },{"../../../../type":52}],19:[function(require,module,exports){
+const {ExpressionStatement} = require("../../../type");
+const expressionStatement = function () {
+    // ExpressionStatement: expressionSequence
+    let e = this.expressionSequence()
+    // 组成一个 ExpressionStatement 对象
+    let es = new ExpressionStatement(e)
+    return es
+}
+
+module.exports = {
+    expressionStatement,
+}
+},{"../../../type":52}],20:[function(require,module,exports){
 const {singleExpressionTypes} = require("../../../../config");
 const {ArrayExpression} = require("../../../../type");
 const arrayExpression = function () {
@@ -1387,7 +1400,7 @@ const arrayExpression = function () {
 module.exports = {
     arrayExpression,
 }
-},{"../../../../config":3,"../../../../type":52}],20:[function(require,module,exports){
+},{"../../../../config":3,"../../../../type":52}],21:[function(require,module,exports){
 // 如果传了 member，说明是 memberExpression = singleExpression
 const {TokenType, ThisExpression, MemberExpression, AssignmentExpression} = require("../../../../type");
 const assignmentExpression = function (member) {
@@ -1426,7 +1439,7 @@ const assignmentExpression = function (member) {
 module.exports = {
     assignmentExpression,
 }
-},{"../../../../type":52}],21:[function(require,module,exports){
+},{"../../../../type":52}],22:[function(require,module,exports){
 const {TokenType, BinaryExpression, UpdateExpression} = require("../../../../type");
 const {op2} = require("../../../../config");
 const binaryExpression = function (left) {
@@ -1480,7 +1493,7 @@ const binaryExpression = function (left) {
 module.exports = {
     binaryExpression,
 }
-},{"../../../../config":3,"../../../../type":52}],22:[function(require,module,exports){
+},{"../../../../config":3,"../../../../type":52}],23:[function(require,module,exports){
 const {
     CallExpression,
     TokenType
@@ -1517,7 +1530,7 @@ const callExpression = function () {
 module.exports = {
     callExpression,
 }
-},{"../../../../type":52}],23:[function(require,module,exports){
+},{"../../../../type":52}],24:[function(require,module,exports){
 // 只有 gl 里才是 classExpression
 // con Student = Class() {}
 // js 里没有
@@ -1540,7 +1553,7 @@ const classExpression = function () {
 module.exports = {
     classExpression,
 }
-},{"../../../../../type":52}],24:[function(require,module,exports){
+},{"../../../../../type":52}],25:[function(require,module,exports){
 const {TokenType, FunctionType, FunctionExpression, ClassMethod} = require("../../../../../type");
 
 // js版
@@ -1615,7 +1628,7 @@ module.exports = {
 //     let p = new ClassMethod(key, value, _static, kind)
 //     return p
 // }
-},{"../../../../../type":52}],25:[function(require,module,exports){
+},{"../../../../../type":52}],26:[function(require,module,exports){
 const {ClassProperty} = require("../../../../../type");
 const classProperty = function () {
     // classProperty:
@@ -1641,7 +1654,7 @@ const classProperty = function () {
 module.exports = {
     classProperty,
 }
-},{"../../../../../type":52}],26:[function(require,module,exports){
+},{"../../../../../type":52}],27:[function(require,module,exports){
 const {TokenType} = require("../../../../../type");
 const classbody = function () {
     // classbody:
@@ -1703,7 +1716,7 @@ const classbody = function () {
 module.exports = {
     classbody,
 }
-},{"../../../../../type":52}],27:[function(require,module,exports){
+},{"../../../../../type":52}],28:[function(require,module,exports){
 const {NewExpression} = require("../../../../../type");
 const newExpression = function () {
     // 这里也没什么说的 处理 new 表达式
@@ -1718,7 +1731,7 @@ const newExpression = function () {
 module.exports = {
     newExpression,
 }
-},{"../../../../../type":52}],28:[function(require,module,exports){
+},{"../../../../../type":52}],29:[function(require,module,exports){
 const {ThisExpression} = require("../../../../../type");
 const thisExpression = function () {
     this.index += 1
@@ -1728,7 +1741,7 @@ const thisExpression = function () {
 module.exports = {
     thisExpression,
 }
-},{"../../../../../type":52}],29:[function(require,module,exports){
+},{"../../../../../type":52}],30:[function(require,module,exports){
 const {TokenType, ObjectExpression} = require("../../../../../type");
 const objectExpression = function () {
     // objectLiteral
@@ -1759,7 +1772,7 @@ const objectExpression = function () {
 module.exports = {
     objectExpression,
 }
-},{"../../../../../type":52}],30:[function(require,module,exports){
+},{"../../../../../type":52}],31:[function(require,module,exports){
 const {TokenType, Property} = require("../../../../../type");
 const propertyAssignment = function () {
     // propertyAssignment
@@ -1785,7 +1798,7 @@ const propertyAssignment = function () {
 module.exports = {
     propertyAssignment,
 }
-},{"../../../../../type":52}],31:[function(require,module,exports){
+},{"../../../../../type":52}],32:[function(require,module,exports){
 const {TokenType} = require("../../../../../type");
 const propertyNameAndValueList = function () {
     // propertyNameAndValueList
@@ -1824,7 +1837,7 @@ const propertyNameAndValueList = function () {
 module.exports = {
     propertyNameAndValueList,
 }
-},{"../../../../../type":52}],32:[function(require,module,exports){
+},{"../../../../../type":52}],33:[function(require,module,exports){
 const {TokenType} = require("../../../../type");
 const elementList = function () {
     // elementList :
@@ -1850,7 +1863,7 @@ const elementList = function () {
 module.exports = {
     elementList,
 }
-},{"../../../../type":52}],33:[function(require,module,exports){
+},{"../../../../type":52}],34:[function(require,module,exports){
 const expressionSequence = function () {
     // expressionSequence:
     // singleExpression ( ',' singleExpression )*
@@ -1860,7 +1873,7 @@ const expressionSequence = function () {
 module.exports = {
     expressionSequence,
 }
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 const {TokenType} = require("../../../../../type");
 const _arguments = function () {
     // arguments
@@ -1883,7 +1896,7 @@ const _arguments = function () {
 module.exports = {
     _arguments,
 }
-},{"../../../../../type":52}],35:[function(require,module,exports){
+},{"../../../../../type":52}],36:[function(require,module,exports){
 const {singleExpressionTypes} = require("../../../../../config");
 const {TokenType} = require("../../../../../type");
 const argumentList = function () {
@@ -1914,7 +1927,7 @@ const argumentList = function () {
 module.exports = {
     argumentList,
 }
-},{"../../../../../config":3,"../../../../../type":52}],36:[function(require,module,exports){
+},{"../../../../../config":3,"../../../../../type":52}],37:[function(require,module,exports){
 const {AssignmentPattern} = require("../../../../../type");
 // 处理赋值表达式
 const assignmentPattern = function () {
@@ -1930,7 +1943,7 @@ const assignmentPattern = function () {
 module.exports = {
     assignmentPattern,
 }
-},{"../../../../../type":52}],37:[function(require,module,exports){
+},{"../../../../../type":52}],38:[function(require,module,exports){
 const {TokenType} = require("../../../../../type");
 const formalParameterList = function () {
     // formalParameterList:
@@ -1977,7 +1990,7 @@ const formalParameterList = function () {
 module.exports = {
     formalParameterList,
 }
-},{"../../../../../type":52}],38:[function(require,module,exports){
+},{"../../../../../type":52}],39:[function(require,module,exports){
 const {TokenType, FunctionType, FunctionExpression} = require("../../../../../type");
 const functionExpression = function () {
     // functionDeclaration:
@@ -2004,7 +2017,7 @@ const functionExpression = function () {
 module.exports = {
     functionExpression,
 }
-},{"../../../../../type":52}],39:[function(require,module,exports){
+},{"../../../../../type":52}],40:[function(require,module,exports){
 const {Identifier} = require("../../../../type")
 
 const identifier = function () {
@@ -2024,7 +2037,7 @@ module.exports = {
     identifier,
 }
 
-},{"../../../../type":52}],40:[function(require,module,exports){
+},{"../../../../type":52}],41:[function(require,module,exports){
 const {Literal} = require("../../../../type");
 const literal = function () {
     let t = this.current()
@@ -2036,7 +2049,7 @@ const literal = function () {
 module.exports = {
     literal,
 }
-},{"../../../../type":52}],41:[function(require,module,exports){
+},{"../../../../type":52}],42:[function(require,module,exports){
 const {
     AssignmentExpression,
     MemberExpression,
@@ -2108,7 +2121,7 @@ const memberExpression = function () {
 module.exports = {
     memberExpression,
 }
-},{"../../../../type":52}],42:[function(require,module,exports){
+},{"../../../../type":52}],43:[function(require,module,exports){
 const {TokenType} = require("../../../../type");
 const {op2, literalType, singleExpressionTypes} = require("../../../../config");
 
@@ -2243,7 +2256,7 @@ module.exports = {
     singleExpression,
     is_current_singleExpression,
 }
-},{"../../../../config":3,"../../../../type":52}],43:[function(require,module,exports){
+},{"../../../../config":3,"../../../../type":52}],44:[function(require,module,exports){
 const {UnaryExpression} = require("../../../../type");
 const unaryExpression = function () {
     // 这里没什么说的 直接构建一元表达式的 ast
@@ -2260,7 +2273,7 @@ const unaryExpression = function () {
 module.exports = {
     unaryExpression,
 }
-},{"../../../../type":52}],44:[function(require,module,exports){
+},{"../../../../type":52}],45:[function(require,module,exports){
 const {TokenType, UpdateExpression, BinaryExpression} = require("../../../../type");
 const updateExpression = function () {
    // ++ a
@@ -2281,20 +2294,7 @@ const updateExpression = function () {
 module.exports = {
     updateExpression,
 }
-},{"../../../../type":52}],45:[function(require,module,exports){
-const {ExpressionStatement} = require("../../../type");
-const expressionStatement = function () {
-    // ExpressionStatement: expressionSequence
-    let e = this.expressionSequence()
-    // 组成一个 ExpressionStatement 对象
-    let es = new ExpressionStatement(e)
-    return es
-}
-
-module.exports = {
-    expressionStatement,
-}
-},{"../../../type":52}],46:[function(require,module,exports){
+},{"../../../../type":52}],46:[function(require,module,exports){
 const {ForStatement} = require("../../../../type");
 const forStatement = function () {
     // forStatement
@@ -2549,7 +2549,7 @@ let TokenType = {
 
 class ASTNode {
     constructor() {
-        this.type = this.constructor.name
+        // this.type = `${this.constructor.name}`
     }
 }
 
@@ -2557,6 +2557,7 @@ class ProgramNode extends ASTNode {
     constructor(body) {
         super()
         this.body = body
+        this.type = 'ProgramNode'
     }
 }
 
@@ -2564,6 +2565,7 @@ class ExpressionStatement extends ASTNode {
     constructor(expression) {
         super()
         this.expression = expression
+        this.type = 'ExpressionStatement'
     }
 }
 
@@ -2578,6 +2580,7 @@ class Identifier extends ASTNode {
         super()
         this.name = name
         this.varType = varType
+        this.type = 'Identifier'
     }
 }
 
@@ -2586,6 +2589,7 @@ class Literal extends ASTNode {
         super()
         this.value = token.value
         this.raw = token.raw
+        this.type = 'Literal'
     }
 }
 
@@ -2595,6 +2599,7 @@ class BinaryExpression extends ASTNode {
         this.left = left
         this.right = right
         this.operator = operator
+        this.type = 'BinaryExpression'
     }
 }
 
@@ -2605,6 +2610,7 @@ class UpdateExpression extends ASTNode {
         this.operator = operator
         this.argument = argument
         this.prefix = prefix
+        this.type = 'UpdateExpression'
     }
 }
 
@@ -2614,6 +2620,7 @@ class UnaryExpression extends ASTNode {
         this.prefix = prefix
         this._argument = _argument
         this.operator = operator
+        this.type = 'UnaryExpression'
     }
 }
 
@@ -2623,6 +2630,7 @@ class IfStatement extends ASTNode {
         this.test = test
         this.consequent = consequent
         this.alternate = alternate
+        this.type = 'IfStatement'
     }
 }
 
@@ -2631,6 +2639,7 @@ class BlockStatement extends ASTNode {
     constructor(body) {
         super()
         this.body = body
+        this.type = 'BlockStatement'
     }
 }
 
@@ -2639,6 +2648,7 @@ class CallExpression extends ASTNode {
         super()
         this.callee = callee
         this._arguments = args
+        this.type = 'CallExpression'
     }
 }
 
@@ -2648,6 +2658,7 @@ class VariableDeclaration extends ASTNode {
         super()
         this.kind = kind
         this.declarations = declarations
+        this.type = 'VariableDeclaration'
         // this.varType = varType
     }
 }
@@ -2658,6 +2669,7 @@ class VariableDeclarator extends ASTNode {
         super()
         this.id = id
         this.init = init
+        this.type = 'VariableDeclarator'
         // this.varType = varType
     }
 }
@@ -2666,6 +2678,7 @@ class ArrayExpression extends ASTNode {
     constructor(elements) {
         super()
         this.elements = elements
+        this.type = 'ArrayExpression'
     }
 }
 
@@ -2678,6 +2691,7 @@ class Property extends ASTNode {
         this.kind = kind
         this.method = false
         this.computed = false
+        this.type = 'Property'
     }
 }
 
@@ -2685,6 +2699,7 @@ class ObjectExpression extends ASTNode {
     constructor(properties) {
         super()
         this.properties = properties
+        this.type = 'ObjectExpression'
     }
 }
 
@@ -2694,6 +2709,7 @@ class MemberExpression extends ASTNode {
         this.object = object
         this.property = property
         this.computed = computed
+        this.type = 'MemberExpression'
     }
 }
 
@@ -2704,6 +2720,7 @@ class AssignmentExpression extends ASTNode {
         this.operator = operator
         this.left = left
         this.right = right
+        this.type = 'AssignmentExpression'
     }
 }
 
@@ -2713,6 +2730,7 @@ class WhileStatement extends ASTNode {
         super()
         this.test = test
         this.body = body
+        this.type = 'WhileStatement'
     }
 }
 
@@ -2723,24 +2741,28 @@ class ForStatement extends ASTNode {
         this.test = test
         this.update = update
         this.body = body
+        this.type = 'ForStatement'
     }
 }
 
 class BreakStatement extends ASTNode {
     constructor() {
         super()
+        this.type = 'BreakStatement'
     }
 }
 
 class ContinueStatement extends ASTNode {
     constructor() {
         super()
+        this.type = 'ContinueStatement'
     }
 }
 
 class ThisExpression extends ASTNode {
     constructor() {
         super()
+        this.type = 'ThisExpression'
     }
 }
 
@@ -2752,6 +2774,7 @@ class FunctionExpression extends ASTNode {
         this.params = params
         this.body = body
         this.varType = varType
+        this.type = 'FunctionExpression'
     }
 }
 
@@ -2762,6 +2785,7 @@ class ClassProperty extends ASTNode {
         this.key = key
         this.value = value
         this._static = _static
+        this.type = 'ClassProperty'
     }
 }
 
@@ -2774,6 +2798,7 @@ class ClassMethod extends ASTNode {
         this._static = _static
         this.computed = computed
         this.kind = kind
+        this.type = 'ClassMethod'
     }
 }
 
@@ -2781,6 +2806,7 @@ class ClassBody extends ASTNode {
     constructor(body) {
         super()
         this.body = body
+        this.type = 'ClassBody'
     }
 }
 
@@ -2790,6 +2816,7 @@ class ClassExpression extends ASTNode {
         this.id = id
         this.superClass = superClass
         this.body = body
+        this.type = 'ClassExpression'
     }
 }
 
@@ -2800,6 +2827,7 @@ class ClassDeclaration extends ASTNode {
         this.superClass = superClass
         this.body = body
         this.varType = varType
+        this.type = 'ClassDeclaration'
     }
 }
 
@@ -2808,6 +2836,7 @@ class NewExpression extends ASTNode {
         super()
         this.callee = callee
         this._arguments = _arguments
+        this.type = 'NewExpression'
 
     }
 }
@@ -2819,6 +2848,7 @@ class FunctionDeclaration extends ASTNode {
         this.params = params
         this.body = body
         this.returnVarType = returnVarType
+        this.type = 'FunctionDeclaration'
     }
 }
 
@@ -2826,6 +2856,7 @@ class ReturnStatement extends ASTNode {
     constructor(arg) {
         super()
         this._argument = arg
+        this.type = 'ReturnStatement'
     }
 }
 
@@ -2835,6 +2866,7 @@ class AssignmentPattern extends ASTNode {
         super()
         this.left = left
         this.right = right
+        this.type = 'AssignmentPattern'
     }
 }
 
@@ -2842,6 +2874,7 @@ class CommentStatement extends ASTNode {
     constructor(value) {
         super()
         this.value = value
+        this.type = 'CommentStatement'
     }
 }
 
@@ -2850,6 +2883,7 @@ class Generics extends ASTNode {
         super()
         this.name = name
         this.parameters = parameters
+        this.type = 'Generics'
     }
 }
 
@@ -2859,6 +2893,7 @@ class FunctionType extends ASTNode {
         super()
         this.paramsType = paramsType
         this.returnVarType = returnVarType
+        this.type = 'FunctionType'
     }
 }
 
@@ -2868,6 +2903,7 @@ class ClassType extends ASTNode {
         this.name = name
         this.properties = properties
         this.methods = methods
+        this.type = 'ClassType'
     }
 }
 
@@ -2875,6 +2911,7 @@ class InstanceType extends ASTNode {
     constructor(classType) {
         super()
         this.classType = classType
+        this.type = 'InstanceType'
     }
 }
 
@@ -2883,6 +2920,7 @@ class ImportSpecifier extends ASTNode {
     constructor(local) {
         super()
         this.local = local
+        this.type = 'ImportSpecifier'
     }
 }
 
@@ -2891,6 +2929,7 @@ class ImportDeclaration extends ASTNode {
         super()
         this.specifiers = specifiers
         this.source = source
+        this.type = 'ImportDeclaration'
     }
 }
 

@@ -54,7 +54,7 @@ let TokenType = {
 
 class ASTNode {
     constructor() {
-        this.type = this.constructor.name
+        // this.type = `${this.constructor.name}`
     }
 }
 
@@ -62,6 +62,7 @@ class ProgramNode extends ASTNode {
     constructor(body) {
         super()
         this.body = body
+        this.type = 'ProgramNode'
     }
 }
 
@@ -69,6 +70,7 @@ class ExpressionStatement extends ASTNode {
     constructor(expression) {
         super()
         this.expression = expression
+        this.type = 'ExpressionStatement'
     }
 }
 
@@ -83,6 +85,7 @@ class Identifier extends ASTNode {
         super()
         this.name = name
         this.varType = varType
+        this.type = 'Identifier'
     }
 }
 
@@ -91,6 +94,7 @@ class Literal extends ASTNode {
         super()
         this.value = token.value
         this.raw = token.raw
+        this.type = 'Literal'
     }
 }
 
@@ -100,6 +104,7 @@ class BinaryExpression extends ASTNode {
         this.left = left
         this.right = right
         this.operator = operator
+        this.type = 'BinaryExpression'
     }
 }
 
@@ -110,6 +115,7 @@ class UpdateExpression extends ASTNode {
         this.operator = operator
         this.argument = argument
         this.prefix = prefix
+        this.type = 'UpdateExpression'
     }
 }
 
@@ -119,6 +125,7 @@ class UnaryExpression extends ASTNode {
         this.prefix = prefix
         this._argument = _argument
         this.operator = operator
+        this.type = 'UnaryExpression'
     }
 }
 
@@ -128,6 +135,7 @@ class IfStatement extends ASTNode {
         this.test = test
         this.consequent = consequent
         this.alternate = alternate
+        this.type = 'IfStatement'
     }
 }
 
@@ -136,6 +144,7 @@ class BlockStatement extends ASTNode {
     constructor(body) {
         super()
         this.body = body
+        this.type = 'BlockStatement'
     }
 }
 
@@ -144,6 +153,7 @@ class CallExpression extends ASTNode {
         super()
         this.callee = callee
         this._arguments = args
+        this.type = 'CallExpression'
     }
 }
 
@@ -153,6 +163,7 @@ class VariableDeclaration extends ASTNode {
         super()
         this.kind = kind
         this.declarations = declarations
+        this.type = 'VariableDeclaration'
         // this.varType = varType
     }
 }
@@ -163,6 +174,7 @@ class VariableDeclarator extends ASTNode {
         super()
         this.id = id
         this.init = init
+        this.type = 'VariableDeclarator'
         // this.varType = varType
     }
 }
@@ -171,6 +183,7 @@ class ArrayExpression extends ASTNode {
     constructor(elements) {
         super()
         this.elements = elements
+        this.type = 'ArrayExpression'
     }
 }
 
@@ -183,6 +196,7 @@ class Property extends ASTNode {
         this.kind = kind
         this.method = false
         this.computed = false
+        this.type = 'Property'
     }
 }
 
@@ -190,6 +204,7 @@ class ObjectExpression extends ASTNode {
     constructor(properties) {
         super()
         this.properties = properties
+        this.type = 'ObjectExpression'
     }
 }
 
@@ -199,6 +214,7 @@ class MemberExpression extends ASTNode {
         this.object = object
         this.property = property
         this.computed = computed
+        this.type = 'MemberExpression'
     }
 }
 
@@ -209,6 +225,7 @@ class AssignmentExpression extends ASTNode {
         this.operator = operator
         this.left = left
         this.right = right
+        this.type = 'AssignmentExpression'
     }
 }
 
@@ -218,6 +235,7 @@ class WhileStatement extends ASTNode {
         super()
         this.test = test
         this.body = body
+        this.type = 'WhileStatement'
     }
 }
 
@@ -228,24 +246,28 @@ class ForStatement extends ASTNode {
         this.test = test
         this.update = update
         this.body = body
+        this.type = 'ForStatement'
     }
 }
 
 class BreakStatement extends ASTNode {
     constructor() {
         super()
+        this.type = 'BreakStatement'
     }
 }
 
 class ContinueStatement extends ASTNode {
     constructor() {
         super()
+        this.type = 'ContinueStatement'
     }
 }
 
 class ThisExpression extends ASTNode {
     constructor() {
         super()
+        this.type = 'ThisExpression'
     }
 }
 
@@ -257,6 +279,7 @@ class FunctionExpression extends ASTNode {
         this.params = params
         this.body = body
         this.varType = varType
+        this.type = 'FunctionExpression'
     }
 }
 
@@ -267,6 +290,7 @@ class ClassProperty extends ASTNode {
         this.key = key
         this.value = value
         this._static = _static
+        this.type = 'ClassProperty'
     }
 }
 
@@ -279,6 +303,7 @@ class ClassMethod extends ASTNode {
         this._static = _static
         this.computed = computed
         this.kind = kind
+        this.type = 'ClassMethod'
     }
 }
 
@@ -286,6 +311,7 @@ class ClassBody extends ASTNode {
     constructor(body) {
         super()
         this.body = body
+        this.type = 'ClassBody'
     }
 }
 
@@ -295,6 +321,7 @@ class ClassExpression extends ASTNode {
         this.id = id
         this.superClass = superClass
         this.body = body
+        this.type = 'ClassExpression'
     }
 }
 
@@ -305,6 +332,7 @@ class ClassDeclaration extends ASTNode {
         this.superClass = superClass
         this.body = body
         this.varType = varType
+        this.type = 'ClassDeclaration'
     }
 }
 
@@ -313,6 +341,7 @@ class NewExpression extends ASTNode {
         super()
         this.callee = callee
         this._arguments = _arguments
+        this.type = 'NewExpression'
 
     }
 }
@@ -324,6 +353,7 @@ class FunctionDeclaration extends ASTNode {
         this.params = params
         this.body = body
         this.returnVarType = returnVarType
+        this.type = 'FunctionDeclaration'
     }
 }
 
@@ -331,6 +361,7 @@ class ReturnStatement extends ASTNode {
     constructor(arg) {
         super()
         this._argument = arg
+        this.type = 'ReturnStatement'
     }
 }
 
@@ -340,6 +371,7 @@ class AssignmentPattern extends ASTNode {
         super()
         this.left = left
         this.right = right
+        this.type = 'AssignmentPattern'
     }
 }
 
@@ -347,6 +379,7 @@ class CommentStatement extends ASTNode {
     constructor(value) {
         super()
         this.value = value
+        this.type = 'CommentStatement'
     }
 }
 
@@ -355,6 +388,7 @@ class Generics extends ASTNode {
         super()
         this.name = name
         this.parameters = parameters
+        this.type = 'Generics'
     }
 }
 
@@ -364,6 +398,7 @@ class FunctionType extends ASTNode {
         super()
         this.paramsType = paramsType
         this.returnVarType = returnVarType
+        this.type = 'FunctionType'
     }
 }
 
@@ -373,6 +408,7 @@ class ClassType extends ASTNode {
         this.name = name
         this.properties = properties
         this.methods = methods
+        this.type = 'ClassType'
     }
 }
 
@@ -380,6 +416,7 @@ class InstanceType extends ASTNode {
     constructor(classType) {
         super()
         this.classType = classType
+        this.type = 'InstanceType'
     }
 }
 
@@ -388,6 +425,7 @@ class ImportSpecifier extends ASTNode {
     constructor(local) {
         super()
         this.local = local
+        this.type = 'ImportSpecifier'
     }
 }
 
@@ -396,6 +434,7 @@ class ImportDeclaration extends ASTNode {
         super()
         this.specifiers = specifiers
         this.source = source
+        this.type = 'ImportDeclaration'
     }
 }
 
